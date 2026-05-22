@@ -35,6 +35,43 @@
       font-size: 15px;
     }
 
+    img, svg { display: block; }<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Swan — We Find What You Seek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset ───────────────────────────────────────────── */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    /* ── Variables ───────────────────────────────────────── */
+    :root {
+      --bg:      #06060a;
+      --surface: #0d0d14;
+      --border:  rgba(255,255,255,.09);
+      --accent:  #c9a86c;        /* or/bronze */
+      --text:    #e8e4dc;
+      --muted:   rgba(232,228,220,.5);
+      --ff-serif: 'Cormorant Garamond', Georgia, serif;
+      --ff-sans:  'Montserrat', sans-serif;
+    }
+
+    /* ── Base ────────────────────────────────────────────── */
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-sans);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
     img, svg { display: block; }
     a { color: inherit; text-decoration: none; }
 
@@ -1567,5 +1604,1506 @@
   });
   </script>
 
+</body>
+</html>
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Grain overlay ───────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: .4;
+    }
+
+    /* ── Reusable ─────────────────────────────────────────── */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+    .label {
+      font-family: var(--ff-sans);
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-heading {
+      font-family: var(--ff-serif);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      letter-spacing: .02em;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    hr.fancy {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 24px auto;
+      width: 120px;
+    }
+
+    /* ── Fade-in animations ───────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Header ──────────────────────────────────────────── */
+    .header {
+      position: fixed; top: 0; width: 100%; z-index: 900;
+      padding: 22px 0;
+      background: rgba(6,6,10,.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: padding .3s;
+    }
+    .header.scrolled { padding: 14px 0; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 14px;
+      font-family: var(--ff-sans);
+      font-size: .8rem; font-weight: 300;
+      letter-spacing: 4px; text-transform: uppercase;
+    }
+
+    .logo-mark {
+      width: 38px; height: 38px;
+      stroke: var(--accent); fill: none; stroke-width: 1.5;
+    }
+
+    .nav-links {
+      display: flex; list-style: none; gap: 38px;
+    }
+    .nav-links a {
+      font-size: 10px; font-weight: 400; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--muted);
+      position: relative; padding-bottom: 3px;
+      transition: color .3s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+      background: var(--accent);
+      transition: width .3s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ── Hero ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 140px 24px 80px;
+      background: radial-gradient(ellipse 80% 60% at 50% 60%, rgba(201,168,108,.07) 0%, transparent 70%);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--accent);
+      padding: 6px 18px;
+      font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 40px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-mark {
+      width: 90px; height: 90px;
+      stroke: var(--accent); fill: none; stroke-width: 1;
+      margin: 0 auto 36px;
+      animation: float 7s ease-in-out infinite, fadeUp 1s ease .15s both;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h1 {
+      font-family: var(--ff-serif);
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      font-weight: 300;
+      letter-spacing: .18em;
+      line-height: 1;
+      animation: fadeUp 1s ease .3s both;
+    }
+
+    .hero-tagline {
+      font-family: var(--ff-serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--accent);
+      margin: 18px 0 10px;
+      letter-spacing: .06em;
+      animation: fadeUp 1s ease .45s both;
+    }
+
+    .hero-sub {
+      font-size: .8rem; font-weight: 300; letter-spacing: 2px;
+      color: var(--muted); margin-bottom: 52px;
+      animation: fadeUp 1s ease .6s both;
+    }
+
+    .hero-cta {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp 1s ease .75s both;
+    }
+
+    /* ── Buttons ─────────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      font-size: 9px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: all .35s;
+      cursor: pointer;
+      border: none;
+      font-family: var(--ff-sans);
+    }
+
+    .btn-gold {
+      background: var(--accent); color: #06060a;
+    }
+    .btn-gold:hover {
+      background: #dbbf80;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(201,168,108,.3);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.2);
+      color: var(--text); background: transparent;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent); color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ── Section padding ─────────────────────────────────── */
+    .section { padding: 110px 0; }
+
+    /* ── About ───────────────────────────────────────────── */
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted); line-height: 1.95;
+      margin-bottom: 20px; font-weight: 300;
+    }
+
+    .about-quote {
+      border-left: 2px solid var(--accent);
+      padding: 28px 36px;
+      background: rgba(201,168,108,.04);
+    }
+    .about-quote p {
+      font-family: var(--ff-serif);
+      font-style: italic;
+      font-size: 1.25rem; line-height: 1.7;
+      color: var(--text);
+      margin: 0;
+    }
+    .about-quote cite {
+      display: block; margin-top: 16px;
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent); font-style: normal;
+    }
+
+    /* ── Services ────────────────────────────────────────── */
+    .services-bg { background: var(--surface); }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2px; margin-top: 64px;
+    }
+
+    .service-card {
+      padding: 48px 36px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      transition: border-color .4s, transform .4s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+      background: var(--accent);
+      transition: width .5s ease;
+    }
+    .service-card:hover { border-color: rgba(201,168,108,.25); transform: translateY(-6px); }
+    .service-card:hover::after { width: 100%; }
+
+    .service-icon {
+      font-size: 1.8rem; margin-bottom: 22px;
+    }
+
+    .service-card h3 {
+      font-family: var(--ff-serif);
+      font-size: 1.35rem; font-weight: 400;
+      letter-spacing: .04em;
+      margin-bottom: 14px;
+    }
+
+    .service-card h4 {
+      font-size: 9px; font-weight: 500;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--accent);
+      margin: 22px 0 10px;
+    }
+
+    .service-card p, .service-card li {
+      color: var(--muted); line-height: 1.8; font-weight: 300; font-size: .88rem;
+    }
+
+    .service-card ul {
+      list-style: none; padding-left: 0;
+    }
+    .service-card li {
+      padding: 4px 0 4px 18px; position: relative;
+    }
+    .service-card li::before {
+      content: '–'; position: absolute; left: 0;
+      color: var(--accent);
+    }
+
+    /* ── Process ─────────────────────────────────────────── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      margin-top: 64px;
+      border: 1px solid var(--border);
+    }
+
+    .process-step {
+      padding: 48px 32px;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      transition: background .3s;
+    }
+    .process-step:last-child { border-right: none; }
+    .process-step:hover { background: rgba(201,168,108,.03); }
+
+    .step-num {
+      font-family: var(--ff-serif);
+      font-size: 3.5rem; font-weight: 300;
+      color: rgba(201,168,108,.2);
+      line-height: 1; margin-bottom: 20px;
+    }
+
+    .process-step h3 {
+      font-family: var(--ff-serif);
+      font-size: 1.2rem; font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .step-time {
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+
+    .process-step p {
+      color: var(--muted); font-size: .87rem; font-weight: 300; line-height: 1.8;
+    }
+
+    /* ── Pricing ─────────────────────────────────────────── */
+    .pricing-bg { background: var(--surface); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px; margin-top: 64px;
+    }
+
+    .pricing-card {
+      border: 1px solid var(--border);
+      background: var(--bg);
+      padding: 44px 36px;
+      position: relative;
+      transition: border-color .4s, transform .4s;
+    }
+    .pricing-card.featured {
+      border-color: var(--accent);
+    }
+    .pricing-card.featured::before {
+      content: 'RECOMMANDÉ';
+      position: absolute; top: -1px; right: 24px;
+      background: var(--accent); color: #06060a;
+      font-size: 8px; font-weight: 600; letter-spacing: 2px;
+      padding: 5px 12px;
+    }
+    .pricing-card:hover { border-color: rgba(201,168,108,.4); transform: translateY(-4px); }
+
+    .pricing-tier {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 18px;
+    }
+
+    .pricing-card h3 {
+      font-family: var(--ff-serif);
+      font-size: 1.5rem; font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .pricing-price {
+      font-family: var(--ff-serif);
+      font-size: 2.2rem; font-weight: 300;
+      color: var(--text);
+    }
+    .pricing-price span {
+      font-size: .85rem; font-weight: 300; color: var(--muted);
+    }
+    .pricing-old {
+      text-decoration: line-through;
+      color: var(--muted); font-size: .85rem;
+      margin-left: 8px;
+    }
+
+    .pricing-divider {
+      height: 1px; background: var(--border);
+      margin: 24px 0;
+    }
+
+    .pricing-target {
+      font-size: .8rem; color: var(--muted); font-style: italic;
+      font-family: var(--ff-serif);
+      margin-bottom: 20px;
+    }
+
+    .pricing-features {
+      list-style: none; padding: 0;
+    }
+    .pricing-features li {
+      padding: 7px 0 7px 20px;
+      position: relative;
+      font-size: .85rem; color: var(--muted);
+      font-weight: 300;
+    }
+    .pricing-features li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--accent); font-weight: 500;
+    }
+
+    .pricing-engage {
+      margin-top: 16px;
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .note-box {
+      margin-top: 36px;
+      border-left: 2px solid var(--accent);
+      padding: 20px 28px;
+      background: rgba(201,168,108,.04);
+      font-size: .84rem; color: var(--muted); font-style: italic;
+    }
+    .note-box strong { color: var(--text); font-style: normal; }
+
+    /* ── Promo ───────────────────────────────────────────── */
+    .promo-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .promo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px; margin-top: 48px;
+    }
+
+    .promo-item {
+      padding: 36px 28px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      transition: background .3s;
+    }
+    .promo-item:hover { background: rgba(201,168,108,.04); }
+
+    .promo-item h4 {
+      font-family: var(--ff-serif);
+      font-size: 1.1rem; font-weight: 400;
+      margin-bottom: 10px;
+    }
+    .promo-item p {
+      font-size: .84rem; color: var(--muted); font-weight: 300;
+    }
+
+    .promo-deadline {
+      margin-top: 40px;
+      font-size: .84rem; color: var(--muted);
+    }
+    .promo-deadline strong { color: var(--accent); }
+
+    /* ── Guarantees ──────────────────────────────────────── */
+    .guarantees-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px; margin-top: 64px;
+    }
+
+    .guarantee-card {
+      border: 1px solid var(--border);
+      padding: 40px 32px;
+      background: var(--bg);
+      transition: border-color .3s;
+    }
+    .guarantee-card:hover { border-color: rgba(201,168,108,.3); }
+
+    .guarantee-icon { font-size: 2rem; margin-bottom: 18px; }
+
+    .guarantee-card h3 {
+      font-family: var(--ff-serif);
+      font-size: 1.15rem; font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .guarantee-card p {
+      font-size: .85rem; color: var(--muted); font-weight: 300; line-height: 1.8;
+    }
+
+    /* ── Testimonials ────────────────────────────────────── */
+    .testimonials-bg { background: var(--surface); }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px; margin-top: 64px;
+    }
+
+    .testimonial-card {
+      border-left: 2px solid var(--accent);
+      padding: 36px 32px;
+      background: var(--bg);
+    }
+
+    .testimonial-text {
+      font-family: var(--ff-serif);
+      font-style: italic;
+      font-size: 1.05rem; line-height: 1.85;
+      color: var(--text); margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ── Contact ─────────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px; margin-top: 64px;
+    }
+
+    .contact-card {
+      padding: 44px 32px; text-align: center;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      transition: background .3s;
+    }
+    .contact-card:hover { background: rgba(201,168,108,.03); }
+
+    .contact-card .contact-icon { font-size: 1.8rem; margin-bottom: 18px; }
+
+    .contact-card h4 {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+    .contact-card p {
+      color: var(--muted); font-size: .87rem; line-height: 1.8;
+    }
+    .contact-card a { color: var(--text); transition: color .3s; }
+    .contact-card a:hover { color: var(--accent); }
+
+    .contact-cta {
+      text-align: center; margin-top: 64px;
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+
+    .contact-tagline {
+      text-align: center; margin-top: 60px;
+      font-family: var(--ff-serif);
+      font-size: 1.1rem; font-style: italic;
+      color: var(--muted);
+    }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    .footer {
+      background: #04040a;
+      border-top: 1px solid var(--border);
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+
+    .footer-mark {
+      width: 44px; height: 44px;
+      stroke: var(--accent); fill: none; stroke-width: 1;
+      margin: 0 auto 24px;
+    }
+
+    .footer p {
+      font-size: .78rem; color: var(--muted); margin-bottom: 6px;
+    }
+    .footer-tag {
+      font-family: var(--ff-serif);
+      font-style: italic; color: var(--accent);
+      font-size: .95rem; margin-top: 16px;
+    }
+
+    /* ── Scroll-to-top ───────────────────────────────────── */
+    .scroll-btn {
+      position: fixed; bottom: 36px; right: 36px;
+      width: 44px; height: 44px;
+      border: 1px solid var(--accent);
+      color: var(--accent); background: var(--bg);
+      font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: all .3s; z-index: 800;
+    }
+    .scroll-btn.visible { opacity: 1; pointer-events: all; }
+    .scroll-btn:hover { background: var(--accent); color: var(--bg); }
+
+    /* ── Modal ───────────────────────────────────────────── */
+    .modal {
+      display: none;
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,.85);
+      backdrop-filter: blur(8px);
+      overflow-y: auto;
+      padding: 60px 16px;
+    }
+
+    .modal.active { display: flex; align-items: flex-start; justify-content: center; }
+
+    .modal-box {
+      width: 100%; max-width: 820px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      animation: slideUp .4s ease;
+      position: relative;
+    }
+
+    @keyframes slideUp {
+      from { opacity:0; transform: translateY(40px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    .modal-header {
+      padding: 48px 56px 32px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute; top: 24px; right: 28px;
+      background: none; border: none;
+      color: var(--muted); font-size: 1.5rem;
+      cursor: pointer; line-height: 1;
+      transition: color .2s;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    .modal-body { padding: 48px 56px 60px; }
+
+    /* ── Form ────────────────────────────────────────────── */
+    .form-section { margin-bottom: 44px; }
+
+    .form-section-title {
+      font-size: 9px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--accent);
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 26px;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .form-group { margin-bottom: 22px; }
+
+    label {
+      display: block;
+      font-size: 10px; font-weight: 400; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .required { color: var(--accent); }
+
+    input[type=text], input[type=email], input[type=tel], select, textarea {
+      width: 100%;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 14px 16px;
+      font-size: .9rem; font-family: var(--ff-sans); font-weight: 300;
+      transition: border-color .3s, background .3s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      background: rgba(201,168,108,.04);
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    select { cursor: pointer; }
+    select option { background: #0d0d14; color: var(--text); }
+
+    .help-text {
+      margin-top: 6px;
+      font-size: .76rem; color: var(--muted); font-style: italic;
+    }
+
+    .radio-group { display: flex; flex-wrap: wrap; gap: 14px; }
+
+    .radio-item, .check-item {
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    input[type=radio], input[type=checkbox] {
+      width: 16px; height: 16px;
+      accent-color: var(--accent); cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .radio-item label, .check-item label {
+      text-transform: none; letter-spacing: 0;
+      font-size: .87rem; color: var(--muted);
+      cursor: pointer; margin: 0; font-weight: 300;
+    }
+
+    .checkbox-group { display: flex; flex-direction: column; gap: 12px; }
+
+    .form-submit { text-align: center; margin-top: 40px; }
+
+    .privacy {
+      margin-top: 24px;
+      font-size: .75rem; color: var(--muted); line-height: 1.7;
+    }
+
+    /* ── Success message ──────────────────────────────────── */
+    .success-panel {
+      display: none;
+      text-align: center; padding: 60px 36px;
+    }
+    .success-panel.active { display: block; }
+
+    .success-icon { font-size: 3rem; margin-bottom: 24px; }
+
+    .success-panel h3 {
+      font-family: var(--ff-serif);
+      font-size: 2rem; font-weight: 300;
+      margin-bottom: 16px;
+    }
+    .success-panel p {
+      color: var(--muted); font-size: .9rem; line-height: 1.8;
+    }
+
+    /* ── Responsive ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .container { padding: 0 24px; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .modal-header, .modal-body { padding-left: 24px; padding-right: 24px; }
+      .section { padding: 80px 0; }
+      .radio-group { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="header" id="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#accueil" class="logo">
+          <svg class="logo-mark" viewBox="0 0 100 100">
+            <path d="M30,70 Q30,50 40,40 Q45,35 50,30 Q55,35 60,40 Q70,50 70,70 L60,75 Q55,70 50,65 Q45,70 40,75 Z"/>
+            <ellipse cx="50" cy="75" rx="25" ry="15"/>
+          </svg>
+          Black Swan
+        </a>
+        <ul class="nav-links">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#apropos">À Propos</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#processus">Processus</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Hero ───────────────────────────────────────────── -->
+  <section id="accueil" class="hero">
+    <div>
+      <div class="hero-badge">Madagascar · Service Premium · Since 2026</div>
+      <svg class="hero-mark" viewBox="0 0 100 100">
+        <path d="M30,70 Q30,50 40,40 Q45,35 50,30 Q55,35 60,40 Q70,50 70,70 L60,75 Q55,70 50,65 Q45,70 40,75 Z"/>
+        <ellipse cx="50" cy="75" rx="25" ry="15"/>
+      </svg>
+      <h1>BLACK SWAN</h1>
+      <p class="hero-tagline">We Find What You Seek</p>
+      <p class="hero-sub">Votre accès exclusif à l'inaccessible — Madagascar</p>
+      <div class="hero-cta">
+        <a href="#tarifs" class="btn btn-gold">Essai Gratuit</a>
+        <button onclick="openModal()" class="btn btn-outline">Demander un Devis</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ──────────────────────────────────────────── -->
+  <section id="apropos" class="section">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-text reveal">
+          <p class="label">Notre identité</p>
+          <h2 class="section-heading" style="margin: 16px 0 28px;">L'art de trouver<br/>l'introuvable</h2>
+          <p>Black Swan est le premier service de conciergerie et de sourcing premium à Madagascar. Nous sommes les artisans de l'inaccessible, les traducteurs du "impossible".</p>
+          <p>Lorsque les circuits traditionnels échouent, notre réseau et notre expertise prennent le relais avec discrétion, efficacité et élégance.</p>
+          <p>Chaque mission est une enquête. Chaque client, un partenaire de confiance.</p>
+        </div>
+        <div class="reveal">
+          <div class="about-quote">
+            <p>Le Cygne Noir symbolise l'événement rare, imprévisible et qui change la donne. C'est exactement ce que nous apportons : la solution que vous ne voyez pas venir, qui résout définitivement votre problème.</p>
+            <cite>Notre ADN</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Services ───────────────────────────────────────── -->
+  <section id="services" class="section services-bg">
+    <div class="container">
+      <div class="reveal" style="text-align:center; margin-bottom: 8px;">
+        <p class="label">Domaines d'expertise</p>
+        <h2 class="section-heading" style="margin-top: 16px;">Nos Services</h2>
+        <hr class="fancy">
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <div class="service-icon">🔍</div>
+          <h3>Sourcing de Produits Rares</h3>
+          <p>Nous activons un réseau physique d'agents, de chasseurs de pièces et de contacts en douane — bien au-delà de la simple recherche en ligne.</p>
+          <h4>Médicaments & Consommables</h4>
+          <ul>
+            <li>Vaccins, traitements oncologiques, dispositifs médicaux</li>
+            <li>Procédures d'importation (ANSM, FDA)</li>
+          </ul>
+          <h4>Pièces Détachées Critiques</h4>
+          <ul>
+            <li>Industrie, automobile, aéronautique</li>
+            <li>Fournisseurs OEM & pièces hors catalogue</li>
+          </ul>
+          <h4>Luxe & Éditions Limitées</h4>
+          <ul>
+            <li>Montres, sacs, vins, spiritueux de collection</li>
+            <li>Traçabilité et garantie d'authenticité</li>
+          </ul>
+          <h4>Technologies de Pointe</h4>
+          <ul>
+            <li>Équipements de laboratoire, logiciels spécialisés</li>
+            <li>Prototypes et conformité aux normes</li>
+          </ul>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">🎯</div>
+          <h3>Recherche de Services Premium</h3>
+          <p>Nous ne recommandons pas, nous sélectionnons. Chaque professionnel est auditionné sur ses références, son éthique et sa capacité à livrer un service d'exception.</p>
+          <h4>Professionnels du Chiffre & du Droit</h4>
+          <ul>
+            <li>Avocats spécialisés (fiscal international, droit minier)</li>
+            <li>Experts-comptables anglophones, auditeurs</li>
+          </ul>
+          <h4>Architectes & Designers</h4>
+          <ul>
+            <li>Projets résidentiels ou hôteliers exigeants</li>
+            <li>Savoir-faire local + esthétique internationale</li>
+          </ul>
+          <h4>Artisans d'Exception</h4>
+          <ul>
+            <li>Ébénistes, couturiers sur mesure, joailliers</li>
+            <li>Ateliers visités, références vérifiées</li>
+          </ul>
+          <h4>Services Médicaux</h4>
+          <ul>
+            <li>Spécialistes internationaux & évacuations sanitaires</li>
+            <li>Cliniques spécialisées à l'étranger</li>
+          </ul>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">🌍</div>
+          <h3>Conciergerie Lifestyle</h3>
+          <p>Nous ne réservons pas, nous créons des expériences sur mesure, mémorables et sans égal.</p>
+          <h4>Accès à l'Inaccessible</h4>
+          <ul>
+            <li>Tables de chefs étoilés, hôtels "no-logo"</li>
+            <li>Billets sold-out, concerts privés, VIP</li>
+          </ul>
+          <h4>Cadeaux à Histoires</h4>
+          <ul>
+            <li>Lithographies d'artistes malgaches émergents</li>
+            <li>Expériences uniques (plongée avec biologiste marin)</li>
+          </ul>
+          <h4>Événements Sur Mesure</h4>
+          <ul>
+            <li>Anniversaires en lieux patrimoniaux</li>
+            <li>Séminaires incentive dans le Tsingy</li>
+          </ul>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">📊</div>
+          <h3>Solutions Business</h3>
+          <p>Nous sommes le département "solutions" que votre entreprise n'a pas encore internalisé.</p>
+          <h4>Sourcing & Qualification Fournisseurs</h4>
+          <ul>
+            <li>Audit d'usine, vérification de certifications</li>
+            <li>Matières premières, textiles, composants</li>
+          </ul>
+          <h4>Veille Concurrentielle</h4>
+          <ul>
+            <li>Tarifs pratiqués, tendances consommateurs</li>
+            <li>Rapport mensuel synthétique</li>
+          </ul>
+          <h4>Import/Export Facilité</h4>
+          <ul>
+            <li>Optimisation Incoterms, régimes douaniers</li>
+            <li>Financements du commerce extérieur</li>
+          </ul>
+          <h4>Mise en Relation Stratégique</h4>
+          <ul>
+            <li>Investisseurs, distributeurs, partenaires tech</li>
+            <li>Accompagnement complet</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Process ────────────────────────────────────────── -->
+  <section id="processus" class="section">
+    <div class="container">
+      <div class="reveal" style="text-align:center; margin-bottom: 8px;">
+        <p class="label">Notre méthode</p>
+        <h2 class="section-heading" style="margin-top: 16px;">Un Processus Clair & Sécurisé</h2>
+        <hr class="fancy">
+      </div>
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="step-num">01</div>
+          <h3>Le Briefing</h3>
+          <p class="step-time">Sous 2 heures</p>
+          <p>Votre chargé de compte vous contacte pour un briefing approfondi. Nous définissons ensemble le périmètre exact, le budget, les contraintes et les critères de succès.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">02</div>
+          <h3>La Chasse</h3>
+          <p class="step-time">Sous 24 – 72 heures</p>
+          <p>Notre réseau interne et externe s'active. Vous recevez un premier point d'étape sous 24h — même s'il s'agit d'un "nous sommes sur la piste X et Y".</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">03</div>
+          <h3>La Proposition</h3>
+          <p class="step-time">Sous 3 – 7 jours</p>
+          <p>Plusieurs options détaillées : fiche fournisseur, références, délais et <strong style="color:var(--text);">coût final tout compris</strong>. Aucune surprise tarifaire.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">04</div>
+          <h3>L'Exécution</h3>
+          <p class="step-time">Jusqu'à satisfaction</p>
+          <p>Vous validez. Nous actionnons. Unique point de contact pour le suivi, la coordination et la résolution de tout aléa jusqu'à la livraison finale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ────────────────────────────────────────── -->
+  <section id="tarifs" class="section pricing-bg">
+    <div class="container">
+      <div class="reveal" style="text-align:center; margin-bottom: 8px;">
+        <p class="label">Nos formules</p>
+        <h2 class="section-heading" style="margin-top: 16px;">Adaptées à Vos Besoins</h2>
+        <hr class="fancy">
+      </div>
+
+      <div class="pricing-grid">
+
+        <div class="pricing-card reveal">
+          <p class="pricing-tier">Formule 01</p>
+          <h3>Découverte 🦢</h3>
+          <div class="pricing-price">49 000 <span>Ar / mois</span></div>
+          <div class="pricing-divider"></div>
+          <p class="pricing-target">Particulier curieux, test d'un besoin ponctuel</p>
+          <ul class="pricing-features">
+            <li>3 recherches simples / mois</li>
+            <li>Support email</li>
+            <li>Délai moyen 48h</li>
+            <li>Sans recherche complexe</li>
+          </ul>
+          <p class="pricing-engage">Engagement : 1 mois</p>
+        </div>
+
+        <div class="pricing-card featured reveal">
+          <p class="pricing-tier">Formule 02</p>
+          <h3>Excellence 🥈</h3>
+          <div class="pricing-price">129 000 <span>Ar / mois</span> <s class="pricing-old">149 000</s></div>
+          <div class="pricing-divider"></div>
+          <p class="pricing-target">Expatrié, cadre, professionnel libéral</p>
+          <ul class="pricing-features">
+            <li>10 recherches / mois</li>
+            <li>1 recherche complexe incluse</li>
+            <li>Support téléphonique prioritaire</li>
+            <li>Délai moyen 24h</li>
+          </ul>
+          <p class="pricing-engage">Engagement : 1 mois</p>
+        </div>
+
+        <div class="pricing-card reveal">
+          <p class="pricing-tier">Formule 03</p>
+          <h3>Black Swan VIP 🥇</h3>
+          <div class="pricing-price">299 000 <span>Ar / mois</span> <s class="pricing-old">349 000</s></div>
+          <div class="pricing-divider"></div>
+          <p class="pricing-target">Dirigeant, entrepreneur, famille aisée</p>
+          <ul class="pricing-features">
+            <li>Recherches illimitées</li>
+            <li>Ligne directe 24h / 7j</li>
+            <li>Conciergerie lifestyle incluse</li>
+            <li>Négociation des prix en votre nom</li>
+            <li>Chargé de compte dédié</li>
+            <li>2 recherches complexes / mois</li>
+          </ul>
+          <p class="pricing-engage">Engagement : 3 mois</p>
+        </div>
+
+        <div class="pricing-card reveal">
+          <p class="pricing-tier">Formule 04</p>
+          <h3>Corporate 💼</h3>
+          <div class="pricing-price">À partir de <span></span><br/>499 000 <span>Ar / mois</span></div>
+          <div class="pricing-divider"></div>
+          <p class="pricing-target">PME / ETI, filiales de groupes internationaux</p>
+          <ul class="pricing-features">
+            <li>Équipe dédiée</li>
+            <li>Sourcing B2B illimité</li>
+            <li>Veille marché mensuelle</li>
+            <li>Compte-rendu stratégique</li>
+            <li>Négociation commerciale assistée</li>
+            <li>Tarifs dégressifs multi-utilisateurs</li>
+          </ul>
+          <p class="pricing-engage">Engagement : 6 mois</p>
+        </div>
+
+      </div>
+
+      <div class="note-box reveal">
+        <strong>Définition « Recherche Complexe » :</strong> Requiert plus de 3 heures de travail, la mobilisation de contacts internationaux, des démarches administratives (douane, santé) ou des négociations avancées. Ex : sourcing d'une machine industrielle, médecin spécialiste à l'étranger, billets sold-out.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Promo ───────────────────────────────────────────── -->
+  <section class="section promo-section">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <p class="label">Offre de lancement</p>
+        <h2 class="section-heading" style="margin-top: 16px;">Pour les 100 Premiers Membres</h2>
+        <hr class="fancy">
+      </div>
+      <div class="promo-grid">
+        <div class="promo-item reveal">
+          <h4>✅ 1 Mois à –50 %</h4>
+          <p>Sur la formule de votre choix</p>
+        </div>
+        <div class="promo-item reveal">
+          <h4>✅ Essai Sans Risque</h4>
+          <p>Première recherche offerte (hors coût d'achat) pour découvrir notre méthode</p>
+        </div>
+        <div class="promo-item reveal">
+          <h4>✅ Parrainage Gagnant-Gagnant</h4>
+          <p>Parrainez un ami → vous recevez 1 mois gratuit, lui aussi</p>
+        </div>
+        <div class="promo-item reveal">
+          <h4>✅ Engagement Avantageux</h4>
+          <p>6 mois : −15 % · 12 mois : −25 % + 1 mois offert</p>
+        </div>
+      </div>
+      <p class="promo-deadline reveal">Offre valable jusqu'au <strong>31 Mars 2026</strong></p>
+    </div>
+  </section>
+
+  <!-- ── Guarantees ─────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <p class="label">Nos engagements</p>
+        <h2 class="section-heading" style="margin-top: 16px;">Garanties Black Swan</h2>
+        <hr class="fancy">
+      </div>
+      <div class="guarantees-grid">
+        <div class="guarantee-card reveal">
+          <div class="guarantee-icon">💎</div>
+          <h3>Transparence Totale</h3>
+          <p>Devis détaillant chaque coût (achat, commission, fret, droits de douane) avant toute validation de votre part.</p>
+        </div>
+        <div class="guarantee-card reveal">
+          <div class="guarantee-icon">✅</div>
+          <h3>Satisfaction ou Remboursé</h3>
+          <p>Si nous n'avons pas trouvé la solution répondant à vos critères validés en briefing, vous ne payez pas la recherche.</p>
+        </div>
+        <div class="guarantee-card reveal">
+          <div class="guarantee-icon">🛡️</div>
+          <h3>Partenaires Vérifiés</h3>
+          <p>Chaque fournisseur est soumis à notre check-list qualité : visite, références, échantillons.</p>
+        </div>
+        <div class="guarantee-card reveal">
+          <div class="guarantee-icon">🔒</div>
+          <h3>Confidentialité Ironclad</h3>
+          <p>Tous nos employés signent des clauses de confidentialité renforcées. Vos projets sensibles sont protégés.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Testimonials ───────────────────────────────────── -->
+  <section class="section testimonials-bg">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <p class="label">Références clients</p>
+        <h2 class="section-heading" style="margin-top: 16px;">Ils Nous Font Confiance</h2>
+        <hr class="fancy">
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card reveal">
+          <p class="testimonial-text">« Notre usine était à l'arrêt pour une pièce introuvable. Black Swan l'a localisée en Pologne et l'a fait arriver avec des techniciens en 5 jours. Ils nous ont sauvé un contrat vital. »</p>
+          <p class="testimonial-author">Directeur Général — Industrie Pharmaceutique, Antananarivo</p>
+        </div>
+        <div class="testimonial-card reveal">
+          <p class="testimonial-text">« Arrivée fraîchement de France, tout m'était étranger. Black Swan a trouvé ma maison, inscrit mes enfants à l'école, et même un professeur de salsa — en 10 jours. Inestimable. »</p>
+          <p class="testimonial-author">Sofia — Expatriée, Diego-Suarez</p>
+        </div>
+        <div class="testimonial-card reveal">
+          <p class="testimonial-text">« Pour le lancement de notre produit, nous voulions un cadeau mémorable. Black Swan a produit des coffrets en bois de palissandre gravés, remplis de vanille et de poivre sauvage. Nos clients en parlent encore. »</p>
+          <p class="testimonial-author">Responsable Marketing — Société Agroalimentaire</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ────────────────────────────────────────── -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <p class="label">Prêt à commencer ?</p>
+        <h2 class="section-heading" style="margin-top: 16px;">Trouvons Ce Que Vous Cherchez</h2>
+        <hr class="fancy">
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <div class="contact-icon">📞</div>
+          <h4>Ligne Standard</h4>
+          <p><a href="tel:+261341146456">+261 34 11 46 456</a></p>
+          <p>8h – 18h</p>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-icon">🚨</div>
+          <h4>Ligne VIP & Urgences</h4>
+          <p><a href="tel:+261334646456">+261 33 46 46 456</a></p>
+          <p>24h / 7j</p>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-icon">📧</div>
+          <h4>Email</h4>
+          <p><a href="mailto:contact@blackswan.mg">contact@blackswan.mg</a></p>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-icon">📍</div>
+          <h4>Bureau</h4>
+          <p>Ivandry Business Center</p>
+          <p>Antananarivo</p>
+          <p style="margin-top:6px; font-size:.78rem;">(sur rendez-vous)</p>
+        </div>
+      </div>
+      <div class="contact-cta reveal">
+        <a href="#tarifs" class="btn btn-gold">Je Veux Essayer Gratuitement</a>
+        <button onclick="openModal()" class="btn btn-outline">Demander un Devis Sur Mesure</button>
+      </div>
+      <p class="contact-tagline reveal">Black Swan — parce que l'impossible est simplement une question de méthode et de réseau.</p>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
+  <footer class="footer">
+    <svg class="footer-mark" viewBox="0 0 100 100">
+      <path d="M30,70 Q30,50 40,40 Q45,35 50,30 Q55,35 60,40 Q70,50 70,70 L60,75 Q55,70 50,65 Q45,70 40,75 Z"/>
+      <ellipse cx="50" cy="75" rx="25" ry="15"/>
+    </svg>
+    <p>© 2026 Black Swan. Tous droits réservés.</p>
+    <p class="footer-tag">We Find What You Seek</p>
+  </footer>
+
+  <!-- ── Scroll-to-top ──────────────────────────────────── -->
+  <button class="scroll-btn" id="scrollBtn">↑</button>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MODAL — FORMULAIRE DEVIS
+       ═══════════════════════════════════════════════════════ -->
+  <div class="modal" id="devisModal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal()" aria-label="Fermer">×</button>
+        <p class="label">Formulaire de contact</p>
+        <h2 id="modal-title" class="section-heading" style="margin-top: 14px;">Demande de Devis</h2>
+        <p style="margin-top:10px; color:var(--muted); font-size:.85rem;">Décrivez-nous votre besoin — nous vous répondons sous 24h.</p>
+      </div>
+
+      <!-- ── Le formulaire ──────────────────────────────── -->
+      <div class="modal-body" id="formWrapper">
+
+        <!-- ERREUR GLOBALE -->
+        <div id="formError" style="display:none; background:rgba(220,50,50,.12); border:1px solid rgba(220,50,50,.3); padding:16px 20px; margin-bottom:28px; color:#f08080; font-size:.85rem;">
+          Une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous appeler au <strong>+261 34 11 46 456</strong>.
+        </div>
+
+        <form id="devisForm" novalidate>
+
+          <!-- 1. INFORMATIONS PERSONNELLES -->
+          <div class="form-section">
+            <p class="form-section-title">01 · Vos Informations</p>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="prenom">Prénom <span class="required">*</span></label>
+                <input type="text" id="prenom" name="prenom" required autocomplete="given-name" />
+              </div>
+              <div class="form-group">
+                <label for="nom">Nom <span class="required">*</span></label>
+                <input type="text" id="nom" name="nom" required autocomplete="family-name" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required autocomplete="email" />
+              </div>
+              <div class="form-group">
+                <label for="telephone">Téléphone <span class="required">*</span></label>
+                <input type="tel" id="telephone" name="telephone" placeholder="+261 XX XX XXX XX" required autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="entreprise">Entreprise / Organisation</label>
+                <input type="text" id="entreprise" name="entreprise" autocomplete="organization" />
+              </div>
+              <div class="form-group">
+                <label for="ville">Ville <span class="required">*</span></label>
+                <input type="text" id="ville" name="ville" placeholder="Ex : Antananarivo" required />
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. NATURE DU BESOIN -->
+          <div class="form-section">
+            <p class="form-section-title">02 · Votre Besoin</p>
+
+            <div class="form-group">
+              <label for="type_service">Type de service recherché <span class="required">*</span></label>
+              <select id="type_service" name="type_service" required>
+                <option value="">— Sélectionnez —</option>
+                <option value="Sourcing de Produits Rares">🔍 Sourcing de Produits Rares</option>
+                <option value="Recherche de Services Premium">🎯 Recherche de Services Premium</option>
+                <option value="Conciergerie Lifestyle">🌍 Conciergerie Lifestyle</option>
+                <option value="Solutions Business">📊 Solutions Business</option>
+                <option value="Autre">💡 Autre (à préciser)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Catégorie(s) spécifique(s)</label>
+              <div class="checkbox-group">
+                <div class="check-item"><input type="checkbox" id="c1" name="categorie_medicaments" value="Oui" /><label for="c1">Médicaments & Consommables Médicaux</label></div>
+                <div class="check-item"><input type="checkbox" id="c2" name="categorie_pieces" value="Oui" /><label for="c2">Pièces Détachées (Industrie, Auto, Aéro)</label></div>
+                <div class="check-item"><input type="checkbox" id="c3" name="categorie_luxe" value="Oui" /><label for="c3">Articles de Luxe & Éditions Limitées</label></div>
+                <div class="check-item"><input type="checkbox" id="c4" name="categorie_technologie" value="Oui" /><label for="c4">Technologies & Équipements Spécialisés</label></div>
+                <div class="check-item"><input type="checkbox" id="c5" name="categorie_professionnels" value="Oui" /><label for="c5">Professionnels (Avocats, Architectes, Artisans)</label></div>
+                <div class="check-item"><input type="checkbox" id="c6" name="categorie_evenement" value="Oui" /><label for="c6">Organisation d'Événements</label></div>
+                <div class="check-item"><input type="checkbox" id="c7" name="categorie_import_export" value="Oui" /><label for="c7">Import / Export & Sourcing Fournisseurs</label></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description détaillée <span class="required">*</span></label>
+              <textarea id="description" name="description" required
+                placeholder="Décrivez ce que vous recherchez : caractéristiques, marque, modèle, quantité, qualité attendue, contraintes…"></textarea>
+              <p class="help-text">Plus vous êtes précis, plus nous pourrons vous aider efficacement.</p>
+            </div>
+          </div>
+
+          <!-- 3. DÉLAIS & BUDGET -->
+          <div class="form-section">
+            <p class="form-section-title">03 · Délais & Budget</p>
+
+            <div class="form-group">
+              <label>Niveau d'urgence <span class="required">*</span></label>
+              <div class="radio-group">
+                <div class="radio-item"><input type="radio" id="u1" name="urgence" value="Flexible (> 2 semaines)" required /><label for="u1">Flexible (> 2 semaines)</label></div>
+                <div class="radio-item"><input type="radio" id="u2" name="urgence" value="Normal (1-2 semaines)" /><label for="u2">Normal (1–2 semaines)</label></div>
+                <div class="radio-item"><input type="radio" id="u3" name="urgence" value="Urgent (< 1 semaine)" /><label for="u3">Urgent (< 1 semaine)</label></div>
+                <div class="radio-item"><input type="radio" id="u4" name="urgence" value="Critique (< 48h)" /><label for="u4">Critique (< 48h)</label></div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="budget">Budget estimé</label>
+                <select id="budget" name="budget">
+                  <option value="">— Sélectionnez —</option>
+                  <option value="Moins de 100 000 Ar">Moins de 100 000 Ar</option>
+                  <option value="100 000 – 500 000 Ar">100 000 – 500 000 Ar</option>
+                  <option value="500 000 Ar – 1 000 000 Ar">500 000 – 1 000 000 Ar</option>
+                  <option value="1 000 000 – 5 000 000 Ar">1 000 000 – 5 000 000 Ar</option>
+                  <option value="Plus de 5 000 000 Ar">Plus de 5 000 000 Ar</option>
+                  <option value="Budget à définir">Budget à définir</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="date_limite">Date limite souhaitée</label>
+                <input type="text" id="date_limite" name="date_limite" placeholder="Ex : 15 mars 2026" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. FORMULE -->
+          <div class="form-section">
+            <p class="form-section-title">04 · Formule d'Abonnement</p>
+            <div class="form-group">
+              <label>Formule qui vous intéresse <span class="required">*</span></label>
+              <div class="radio-group">
+                <div class="radio-item"><input type="radio" id="f1" name="formule" value="Demande ponctuelle" required /><label for="f1">Ponctuelle</label></div>
+                <div class="radio-item"><input type="radio" id="f2" name="formule" value="Découverte 🦢" /><label for="f2">🦢 Découverte</label></div>
+                <div class="radio-item"><input type="radio" id="f3" name="formule" value="Excellence 🥈" /><label for="f3">🥈 Excellence</label></div>
+                <div class="radio-item"><input type="radio" id="f4" name="formule" value="VIP 🥇" /><label for="f4">🥇 VIP</label></div>
+                <div class="radio-item"><input type="radio" id="f5" name="formule" value="Corporate 💼" /><label for="f5">💼 Corporate</label></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. COMPLÉMENTAIRE -->
+          <div class="form-section">
+            <p class="form-section-title">05 · Informations Complémentaires</p>
+
+            <div class="form-group">
+              <label for="source">Comment avez-vous entendu parler de Black Swan ?</label>
+              <select id="source" name="source">
+                <option value="">— Sélectionnez —</option>
+                <option value="Bouche à oreille / Recommandation">Bouche à oreille / Recommandation</option>
+                <option value="Réseaux sociaux">Réseaux sociaux</option>
+                <option value="Recherche Google">Recherche Google</option>
+                <option value="Publicité">Publicité</option>
+                <option value="Événement">Événement</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="remarques">Remarques ou questions supplémentaires</label>
+              <textarea id="remarques" name="remarques"
+                placeholder="Toute information susceptible de nous aider à mieux comprendre votre besoin…"></textarea>
+            </div>
+          </div>
+
+          <!-- SUBMIT -->
+          <div class="form-submit">
+            <button type="submit" class="btn btn-gold" id="submitBtn">Envoyer ma Demande</button>
+            <p class="privacy">En soumettant ce formulaire, vous acceptez que Black Swan traite vos données conformément à notre politique de confidentialité. 🔒 Vos informations sont strictement confidentielles.</p>
+          </div>
+
+        </form>
+      </div><!-- /#formWrapper -->
+
+      <!-- ── Message de succès ────────────────────────── -->
+      <div class="success-panel" id="successPanel">
+        <div class="success-icon">✅</div>
+        <h3>Demande envoyée !</h3>
+        <p>Merci pour votre confiance. Notre équipe analysera votre demande et vous recontactera sous 24h par email ou téléphone.</p>
+        <p style="margin-top:20px;">
+          <strong style="color:var(--text);">Besoin urgent ?</strong><br/>
+          +261 34 11 46 456 (Standard) · +261 33 46 46 456 (Urgences VIP 24h/7j)
+        </p>
+        <button class="btn btn-outline" style="margin-top:32px;" onclick="closeModal()">Fermer</button>
+      </div>
+
+    </div><!-- /.modal-box -->
+  </div><!-- /#devisModal -->
+
+  <!-- ── Scripts ────────────────────────────────────────── -->
+  <script>
+  /* ─── Scroll animations ─────────────────────────────── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ─── Header shrink ─────────────────────────────────── */
+  const hdr = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('scrollBtn').classList.toggle('visible', window.scrollY > 300);
+  });
+
+  document.getElementById('scrollBtn').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* ─── Smooth scroll for nav links ───────────────────── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  /* ─── Modal ──────────────────────────────────────────── */
+  function openModal() {
+    document.getElementById('devisModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('devisModal').classList.remove('active');
+    document.body.style.overflow = '';
+    // Reset
+    document.getElementById('devisForm').reset();
+    document.getElementById('devisForm').style.display = '';
+    document.getElementById('formError').style.display = 'none';
+    document.getElementById('successPanel').classList.remove('active');
+    document.getElementById('formWrapper').style.display = '';
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = false;
+    btn.textContent = 'Envoyer ma Demande';
+  }
+
+  // Fermeture en cliquant sur le fond
+  document.getElementById('devisModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // Fermeture avec Échap
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  /* ─── Formspree submission optimisée ───────────────────── */
+  document.getElementById('devisForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const form   = this;
+    const btn    = document.getElementById('submitBtn');
+    const errDiv = document.getElementById('formError');
+
+    // 1. Masquer l'erreur précédente
+    errDiv.style.display = 'none';
+
+    // 2. Validation manuelle des champs requis (Garde vos styles visuels)
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+
+    required.forEach(el => {
+      if (el.type === 'radio') return; 
+      if (!el.value.trim()) {
+        el.style.borderColor = 'rgba(220,50,50,.6)';
+        valid = false;
+      } else {
+        el.style.borderColor = '';
+      }
+    });
+
+    const radioGroups = ['urgence', 'formule'];
+    radioGroups.forEach(name => {
+      const checked = form.querySelector(`input[name="${name}"]:checked`);
+      if (!checked) {
+        form.querySelectorAll(`input[name="${name}"]`).forEach(r => r.style.outline = '1px solid rgba(220,50,50,.6)');
+        valid = false;
+      } else {
+        form.querySelectorAll(`input[name="${name}"]`).forEach(r => r.style.outline = '');
+      }
+    });
+
+    if (!valid) {
+      errDiv.textContent = 'Veuillez remplir tous les champs obligatoires (marqués *).';
+      errDiv.style.display = 'block';
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // 3. Préparation simplifiée des données avec FormData
+    const formData = new FormData(form);
+
+    // 4. Interface en attente
+    btn.disabled  = true;
+    btn.textContent = 'Envoi en cours…';
+
+    try {
+      // ⚠️ REMPLACEZ 'VOTRE_ID_FORMSPREE' PAR VOTRE VRAI CODE (ex: xqazzbjk)
+      const res = await fetch('https://formspree.io/f/xredkdnb', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: formData
+      });
+
+      if (res.ok) {
+        // ✅ Succès
+        document.getElementById('formWrapper').style.display = 'none';
+        document.getElementById('successPanel').classList.add('active');
+        document.getElementById('successPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        // ❌ Erreur API
+        const payload = await res.json().catch(() => ({}));
+        console.error('Formspree error:', res.status, payload);
+        errDiv.textContent = `Erreur : ${payload?.error || 'Impossible d\'envoyer le formulaire.'}`;
+        errDiv.style.display = 'block';
+        btn.disabled  = false;
+        btn.textContent = 'Envoyer ma Demande';
+      }
+    } catch (err) {
+      // ❌ Erreur Réseau
+      console.error('Network error:', err);
+      errDiv.textContent = 'Erreur réseau. Vérifiez votre connexion internet.';
+      errDiv.style.display = 'block';
+      btn.disabled  = false;
+      btn.textContent = 'Envoyer ma Demande';
+    }
+  });
 </body>
 </html>
